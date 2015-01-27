@@ -8,7 +8,7 @@ install-app:
   # Install prerequisites
   pkg:
     - installed
-    - names: 
+    - pkgs: 
       - nodejs
       - npm
       - nodejs-mongodb
@@ -25,6 +25,10 @@ install-app:
     - name: npm install forever -g
     - require:
       - pkg: install-app
+
+  npm:
+    - installed
+    - name: mongodb
 
 run-app:
   # Use 'forever' to start the server
