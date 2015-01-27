@@ -11,6 +11,7 @@ install-app:
     - names: 
       - nodejs
       - npm
+      - nodejs-mongodb
 
   # Place our Node code
   file: 

@@ -8,6 +8,7 @@
 
 var os = require('os');
 var http = require('http');
+var MongoClient = require('mongodb').MongoClient;
 
 http.createServer(function (req, res) {
   var interfaces = os.networkInterfaces();
@@ -21,7 +22,18 @@ http.createServer(function (req, res) {
       }
   }
 
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end(JSON.stringify(addresses));
+
+  
+  // Connect to the db
+  MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
+    if(!err) {
+      res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.end(JSON.stringify(addresses) + ' And connected to Mongo at {{mongo_url}}');
+    }
+
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end(JSON.stringify(addresses) + ' But failed to connect to Mongo :(');
+    
+  });
 }).listen(1337, '0.0.0.0');
 console.log('Server listening on port 1337');

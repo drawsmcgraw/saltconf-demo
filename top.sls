@@ -1,10 +1,12 @@
 base:
-  *mongo*:
+  'roles:mongo:true':
+    - match: pillar
     - mongo.install
-    - mongo.rs
 
-  *rproxy*:
+  'roles:rproxy:true':
+    - match: pillar
     - app.rproxy
 
-  *app*:
+  'roles:app:true':
+    - match: pillar
     - app.install
