@@ -1,12 +1,12 @@
 base:
-  'roles:mongo:true':
-    - match: pillar
+  'roles:*mongo*':
+    - match: grain
     - mongo.install
 
-  'roles:rproxy:true':
-    - match: pillar
+  'roles:*rproxy*':
+    - match: grain
     - app.rproxy
 
-  'roles:app:true':
-    - match: pillar
+  'roles:*app*':
+    - match: grain
     - app.install

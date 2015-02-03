@@ -6,7 +6,7 @@
 
 # Define the app servers that we're in front of.
 upstream awesome-app {
-    {% for server, addrs in salt['mine.get']('*app*', 'network.ip_addrs').items() -%}
+    {% for server, addrs in salt['mine.get']('roles:*app*', 'network.ip_addrs', expr_form='grain').items() -%}
     server {{ addrs[0] }}:1337;
     {% endfor -%}
 }

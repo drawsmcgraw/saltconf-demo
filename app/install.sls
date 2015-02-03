@@ -11,7 +11,6 @@ install-app:
     - pkgs: 
       - nodejs
       - npm
-      - nodejs-mongodb
 
   # Place our Node code
   file: 
@@ -29,6 +28,7 @@ install-app:
   npm:
     - installed
     - name: mongodb
+    - dir: /root
 
 run-app:
   # Use 'forever' to start the server
