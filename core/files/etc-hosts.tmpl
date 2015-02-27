@@ -1,0 +1,4 @@
+{% for host, ip in salt['mine.get']('*', 'network.ip_addrs').items() -%}
+{{ip[0]}} {{host}}
+{% endfor -%}
+127.0.0.1 {{ salt['grains.get']('host') }}
