@@ -1,0 +1,32 @@
+<html>
+<body>
+<head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+<h2 align='center'>Hi SaltConf 2015!!</h2>
+
+<h2 align='center'>My name is <i>{{salt['grains.get']('host')}}</i></h2>
+
+<b>Here's the entire app farm:</b>
+<ul>
+    {% for server, addrs in salt['mine.get']('roles:*ui*', 'network.ip_addrs', expr_form='grain').items() -%}
+    <li>{{server}} - {{ addrs[0] }}</li>
+    {% endfor -%}
+</ul>
+
+<b>I have some MongoDB friends, too. They are:</b>
+<ul>
+    {% for server, addrs in salt['mine.get']('roles:*mongo*', 'network.ip_addrs', expr_form='grain').items() -%}
+    <li>{{server}} - {{ addrs[0] }}</li>
+    {% endfor -%}
+</ul>
+
+<b>Lastly, you got here by visiting my Nginx buddy. He is:</b>
+<ul>
+    {% for server, addrs in salt['mine.get']('roles:*rproxy*', 'network.ip_addrs', expr_form='grain').items() -%}
+    <li>{{server}} - {{ addrs[0] }}</li>
+    {% endfor -%}
+</ul>
+
+</body>
+</html>

@@ -14,9 +14,9 @@ base:
     - app.rproxy
 
   # All app servers
-  #  'roles:*app*':
-  #    - match: grain
-  #    - app.install
+  'roles:*ui*':
+    - match: grain
+    - app.install
 
   # Mongo replica set primary
   '*mongo*-01*':
