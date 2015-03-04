@@ -11,6 +11,9 @@ upstream awesome-app {
     {% endfor -%}
 }
 
+# Need this for long server names
+server_names_hash_bucket_size  64;
+
 # Forward all port 80 http traffic to our app farm, defined above as 'awesome-app'.
 server {
     listen       80;
